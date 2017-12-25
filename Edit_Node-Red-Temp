@@ -1,0 +1,83 @@
+[
+    {
+        "id": "8d4e88f7.4d7488",
+        "type": "tab",
+        "label": "Flow 4"
+    },
+    {
+        "id": "fc8d486f.45a918",
+        "type": "inject",
+        "z": "8d4e88f7.4d7488",
+        "name": "DHT",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "repeat": "5",
+        "crontab": "",
+        "once": true,
+        "x": 390,
+        "y": 180,
+        "wires": [
+            [
+                "ff8d5c63.a396c"
+            ]
+        ]
+    },
+    {
+        "id": "ff8d5c63.a396c",
+        "type": "function",
+        "z": "8d4e88f7.4d7488",
+        "name": "Pload",
+        "func": "msg.headers={\n    deviceKey:\"8uw0Iqq00hscT2yx\" \n};\n\nmsg.payload= \"Temperature,,25.3\"\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 541.1666870117188,
+        "y": 181.33334350585938,
+        "wires": [
+            [
+                "35fb5f9e.9d50b"
+            ]
+        ]
+    },
+    {
+        "id": "35fb5f9e.9d50b",
+        "type": "http request",
+        "z": "8d4e88f7.4d7488",
+        "name": "",
+        "method": "POST",
+        "ret": "txt",
+        "url": "https://api.mediatek.com/mcs/v2/devices/DKk0kX2V/datapoints.csv",
+        "tls": "",
+        "x": 697.1666870117188,
+        "y": 182,
+        "wires": [
+            [
+                "9475c742.c06dd8",
+                "a1790087.6e3bd"
+            ]
+        ]
+    },
+    {
+        "id": "9475c742.c06dd8",
+        "type": "http response",
+        "z": "8d4e88f7.4d7488",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 865.1666870117188,
+        "y": 180.6666717529297,
+        "wires": []
+    },
+    {
+        "id": "a1790087.6e3bd",
+        "type": "debug",
+        "z": "8d4e88f7.4d7488",
+        "name": "",
+        "active": true,
+        "console": "false",
+        "complete": "false",
+        "x": 865.1666870117188,
+        "y": 256.66668701171875,
+        "wires": []
+    }
+]
